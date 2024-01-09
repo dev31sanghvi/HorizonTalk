@@ -16,4 +16,8 @@ export const SocketProvider = (props) => {
       {props.children}
     </SocketContext.Provider>
   );
+
 };
+console.log(SocketProvider);
+
+// Completed
