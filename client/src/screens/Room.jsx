@@ -129,27 +129,33 @@ const RoomPage = () => {
       {myStream && (
         <>
 
-          <h1>My video</h1>
+          {/* <h1>My video</h1>
           <ReactPlayer
             playing
             muted
             height="200px"
             width="300px"
             url={myStream}
-          />
+          /> */}
+           <h1>My video</h1>
+    <video autoPlay muted ref={(ref) => (ref ? (ref.srcObject = myStream) : null)} />
+    <audio autoPlay ref={(ref) => (ref ? (ref.srcObject = remoteStream) : null)} />
         </>
       )}
       {remoteStream && (
         <>
 
-          <h1>Remote Stream</h1>
+          {/* <h1>Remote Stream</h1>
           <ReactPlayer
             playing
             muted
             height="200px"
             width="300px"
             url={remoteStream}
-          />
+          /> */}
+           <h1>Remote Stream</h1>
+    <video autoPlay muted ref={(ref) => (ref ? (ref.srcObject = remoteStream) : null)} />
+    <audio autoPlay ref={(ref) => (ref ? (ref.srcObject = remoteStream) : null)} />
         </>
       )}
     </div>
