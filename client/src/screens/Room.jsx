@@ -7,6 +7,7 @@ const RoomPage = () => {
   const [remoteSocketId, setRemoteSocketId] = useState(null);
   const [myStream, setMyStream] = useState();
   const [remoteStream, setremoteStream] = useState();
+  const [isAudioMuted, setIsAudioMuted] = useState(false);
 
   // user joined function
   const handleUserJoined = useCallback(({ email, id }) => {
@@ -102,6 +103,17 @@ const RoomPage = () => {
     });
   }, [])
 
+  //Audio mute button :
+  const toggleAudioMute=()=>{
+    if(myStream){
+      const audioTracks=myStream.getAudioTracks();
+      audioTracks.forEach((track) => {
+        track.enabled = !track.enabled;
+      });
+      setIsAudioMuted(!isAudioMuted);
+    }
+  }
+
 
 
   useEffect(() => {
@@ -139,7 +151,7 @@ const RoomPage = () => {
           /> */}
            <h1>My video</h1>
     <video autoPlay muted ref={(ref) => (ref ? (ref.srcObject = myStream) : null)} />
-    <audio autoPlay ref={(ref) => (ref ? (ref.srcObject = remoteStream) : null)} />
+    <button onClick={toggleAudioMute}>{isAudioMuted ? "Unmute" : "Mute"}</button>
         </>
       )}
       {remoteStream && (
