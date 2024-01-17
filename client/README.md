@@ -16,23 +16,19 @@ HorizonTalk is a real-time video chatting web application built with React, WebR
 - **Frontend:** React
 - **Real-Time Communication:** WebRTC
 - **Server:** Node.js with Socket.io
-- **Styling:** CSS (you can mention if you are using any CSS frameworks or preprocessors)
-- **Deployment:** [Add deployment details]
+- **Styling:** Tailwind CSS
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js installed
-- [Additional prerequisites, if any]
 
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/dev31sanghvi/HorizonTalk.git`
 2. Install dependencies: `npm install`
-3. Start the application: `npm start`
-
-[Add any additional setup or configuration details]
+3. Start the application: `npm run dev`
 
 ## Usage
 
@@ -58,4 +54,3 @@ This project is licensed under the [Your License] - see the [LICENSE](LICENSE) f
 
 ---
 
-Feel free to customize this template according to the specific details of your project. Providing clear and concise information will help others understand, use, and contribute to your project effectively.
