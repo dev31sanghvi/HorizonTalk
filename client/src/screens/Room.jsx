@@ -1,9 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSocket } from "../context/SocketProvider";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 import peer from "../service/peer";
+import { Navigate } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
+
 const RoomPage = () => {
   const socket = useSocket();
+  // const navigate = useNavigate();
+  // const [lobby, setLobby] = useState("");
   const [remoteSocketId, setRemoteSocketId] = useState(null);
   const [myStream, setMyStream] = useState();
   const [remoteStream, setremoteStream] = useState();
@@ -52,6 +57,27 @@ const RoomPage = () => {
     setIsScreenSharing(false);
 
 
+  };
+
+  // function to end the call
+  const endCall = () => {
+
+    alert("Meeting has ended");
+    //closing the peer connnection
+    peer.peer.close();
+    //stopping the local stream tracks
+    myStream.getTracks().forEach((track) => track.stop());
+    //for stopping the remote stream tracks
+    if (remoteStream) {
+      remoteStream.getTracks().forEach((track) => track.stop());
+    }
+    setRemoteSocketId(null);
+    setMyStream(null);
+    setremoteStream(null);
+    setIsScreenSharing(false);
+
+    console.log('Redirecting to the lobby');
+    // navigate('/lobby');
   };
 
   // user joined function
@@ -205,6 +231,7 @@ const RoomPage = () => {
           ) : (
             <button onClick={startScreenSharing}>Start Screen Sharing</button>
           )}
+           {remoteSocketId && <button onClick={endCall}>End Call</button>}
         </>
       )}
       {remoteStream && (
